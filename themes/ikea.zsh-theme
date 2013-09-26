@@ -33,6 +33,17 @@ function wwdiff () {
   fi
 }
 
+function upgrade_datastore () {
+    local ds_source="${HOME}/Dropbox/Khan Academy All Staff/Other shared items/datastores"
+    local ds_target="${HOME}/projects/.gae"
+    local backup_name="current.sqlite $(date "+%Y-%m-%d %H.%M.%S")"
+    mv "${ds_target}/current.sqlite" "${ds_target}/${backup_name}"
+    cp "${ds_source}/current.sqlite" "${ds_target}/"
+    echo "Copied new current.sqlite from dropbox"
+    echo "Your old current.sqlite has been archived at "
+    echo "  ${fg[yellow]}${ds_target}/${backup_name}"
+}
+
 PROMPT='
 %{$fg[blue]%}%n%{$reset_color%}@%{$fg[green]%}%m%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
 $(virtualenv_info)$(nodeenv_info)$(prompt_char) '
