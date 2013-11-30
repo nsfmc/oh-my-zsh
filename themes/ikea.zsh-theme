@@ -34,7 +34,7 @@ function wwdiff () {
 }
 
 function upgrade_datastore () {
-    local ds_source="${HOME}/Dropbox/Khan Academy All Staff/Other shared items/datastores"
+    local ds_source="${HOME}/Dropbox (Khan Academy)/Khan Academy All Staff/Other shared items/datastores"
     local ds_target="${HOME}/projects/.gae"
     local backup_name="current.sqlite $(date "+%Y-%m-%d %H.%M.%S")"
     mv "${ds_target}/current.sqlite" "${ds_target}/${backup_name}"
