@@ -33,6 +33,14 @@ function wwdiff () {
   fi
 }
 
+function wo () {
+  # work on a virtualenv, defaults to activating
+  # ./env/bin/activate but will do
+  # $1/bin/activate
+  local ENV_PATH=${1-"env"}
+  source "${ENV_PATH}/bin/activate"
+}
+
 function upgrade_datastore () {
     local ds_source="${HOME}/Dropbox (Khan Academy)/Khan Academy All Staff/Other shared items/datastores"
     local ds_target="${HOME}/projects/.gae"
