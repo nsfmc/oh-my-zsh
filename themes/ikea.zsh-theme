@@ -41,6 +41,20 @@ function wo () {
   source "${ENV_PATH}/bin/activate"
 }
 
+function motd () {
+    if [ -e ~/.motd.txt ]; then
+        local rnd=1
+        fn=~/.motd.txt
+        lns=$(wc -l $fn | sed 's|[ ]*\([0-9]*\).*|\1|')
+        if [ "$lns" = 0 ]; then
+          rnd=1
+        else
+          rnd=$(( (RANDOM % (lns + 1)) + 1 ))
+        fi
+        sed -n ${rnd}p $fn
+    fi
+}
+
 function upgrade_datastore () {
     local ds_source="${HOME}/Dropbox (Khan Academy)/Khan Academy All Staff/Other shared items/datastores"
     local ds_target="${HOME}/projects/.gae"
